@@ -316,20 +316,39 @@ body:before {
 }
 
 .custom-input {
+  box-sizing: border-box;
+  --mw: 295px;
   flex-flow: column wrap;
   justify-content: space-between;
   align-items: flex-start;
+  margin: 0;
   display: flex;
+}
+
+@media (width <= 768px) {
+  .custom-input {
+    --mw: 260px;
+  }
+}
+
+@media (width <= 414px) {
+  .custom-input {
+    --mw: 295px;
+  }
+}
+
+@media screen and (width >= 626px) {
+  .custom-input {
+    --mv: 300px;
+  }
 }
 
 .custom-input input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 .custom-input input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 .custom-input input[type="number"] {
@@ -337,12 +356,12 @@ body:before {
 }
 
 .custom-input__wrapper {
+  min-width: var(--mw);
   background-color: var(--color-bg-secondary-alt);
   flex-flow: row;
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-width: 295px;
   padding: 10px;
   display: flex;
   position: relative;
@@ -372,12 +391,12 @@ body:before {
 }
 
 .custom-input__select {
+  min-width: var(--mw);
   background-color: var(--color-bg-secondary-alt);
   appearance: none;
   cursor: pointer;
   border-color: #0000;
   width: 100%;
-  min-width: 295px;
   height: 62px;
   padding: 0 0 0 10px;
 }
@@ -462,11 +481,31 @@ body:before {
 }
 
 .calculator__row {
+  padding: 0 var(--input-padding);
   flex-flow: row;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   gap: 25px;
   display: flex;
+}
+
+@media (width <= 768px) {
+  .calculator__row {
+    gap: 20px;
+  }
+}
+
+@media (width <= 414px) {
+  .calculator__row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media screen and (width <= 626px) {
+  .calculator__row:first-child, .calculator__row:nth-child(2) {
+    flex-direction: column;
+  }
 }
 
 .calculator__sum {
@@ -516,7 +555,7 @@ body:before {
   line-height: 46px;
 }
 
-@media (width <= 768px) {
+@media (width <= 414px) {
   .sum {
     font-size: var(--text-medium);
   }
@@ -533,15 +572,23 @@ body:before {
 
 .footer-calculator {
   font-size: var(--text-medium);
+  justify-content: flex-start;
   margin-bottom: 25px;
 }
 
 .footer-calculator__button {
   border-radius: var(--border-radius);
   letter-spacing: .05em;
-  padding: 18px 60px;
+  padding: 18px 50px;
   line-height: 23px;
   position: relative;
+}
+
+@media (width <= 414px) {
+  .footer-calculator__button {
+    font-size: var(--text-x-small);
+    padding: 16px 50px;
+  }
 }
 
 .footer-calculator__button_tooltip {

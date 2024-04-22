@@ -395,10 +395,24 @@ body {
 
 .custom-input {
     @include flex(space-between, column, $ai: flex-start);
+    box-sizing: border-box;
+
+    margin: 0;
+    --mw: 295px;
+
+    @include media($mobile) {
+        --mw: 260px;
+    }
+    @include media($s-mobile) {
+        --mw: 295px;
+    }
+    @media screen and (min-width: 626px) {
+        --mv: 300px;
+    }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
-        margin: 0;
     }
 
     input[type="number"] {
@@ -407,7 +421,7 @@ body {
     &__wrapper {
         @include flex(center, row, nowrap);
         position: relative;
-        min-width: 295px;
+        min-width: var(--mw);
         width: 100%;
         padding: 10px;
         background-color: var(--color-bg-secondary-alt);
@@ -440,7 +454,7 @@ body {
 
     &__select {
         height: 62px;
-        min-width: 295px;
+        min-width: var(--mw);
         width: 100%;
         padding: 0 0 0 10px;
         background-color: var(--color-bg-secondary-alt);
@@ -522,8 +536,22 @@ body {
     }
 
     &__row {
-        @include flex(start, row, nowrap);
+        @include flex(space-between, row, nowrap);
+        padding: 0 var(--input-padding);
         gap: 25px;
+        @include media($mobile) {
+            gap: 20px;
+        }
+        @include media($s-mobile) {
+            flex-direction: column;
+            gap: 10px;
+        }
+        @media screen and (max-width: 626px) {
+            &:nth-child(1),
+            &:nth-child(2) {
+                flex-direction: column;
+            }
+        }
     }
 
     &__sum {
@@ -563,7 +591,7 @@ body {
     font-size: var(--text-large);
     line-height: 46px;
     color: var(--color-text-primary-alt);
-    @include media($mobile) {
+    @include media($s-mobile) {
         font-size: var(--text-medium);
     }
     &_accent {
@@ -578,10 +606,15 @@ body {
 .footer-calculator {
     margin-bottom: 25px;
     font-size: var(--text-medium);
+    justify-content: flex-start;
     &__button {
         position: relative;
         border-radius: var(--border-radius);
-        padding: 18px 60px;
+        padding: 18px 50px;
+        @include media($s-mobile) {
+            padding: 16px 50px;
+            font-size: var(--text-x-small);
+        }
 
         line-height: 23px;
         letter-spacing: calc(1em / 20);

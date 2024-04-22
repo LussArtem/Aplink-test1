@@ -7405,7 +7405,7 @@ function customCalcl() {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","jquery":"hgMhh"}],"jYsSn":[function(require,module,exports) {
+},{"jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jYsSn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>increment);
@@ -7427,6 +7427,6 @@ function increment() {
 // inp.dispatchEvent(new Event("change"));
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./customCalc":"43Ngm"}]},["iqNlW","1SICI"], "1SICI", "parcelRequirea799")
+},{"./customCalc":"43Ngm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iqNlW","1SICI"], "1SICI", "parcelRequirea799")
 
 //# sourceMappingURL=index.18dbc454.js.map
