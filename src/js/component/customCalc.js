@@ -2,9 +2,9 @@ import $ from "jquery";
 export default function customCalcl() {
     $(document).ready(function () {
         // price
-        var basePricePvhWhite = 139;
-        var basePricePvhColored = 160;
-        var basePriceTextileWhite = 225;
+        var basePricePvhWhite = 1390;
+        var basePricePvhColored = 1600;
+        var basePriceTextileWhite = 2250;
         var cornerPrice = 100;
 
         var $form = $("form");
