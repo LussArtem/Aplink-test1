@@ -632,3 +632,16 @@ body {
         }
     }
 }
+
+// -------------------------------- MODAL --------------------------------//1
+#inline {
+    display: none;
+}
+
+.form {
+    &__column {
+        @include flex(space-between, column, nowrap);
+        padding: 0 var(--input-padding);
+        gap: 25px;
+    }
+}
