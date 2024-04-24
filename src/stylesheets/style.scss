@@ -84,10 +84,6 @@
     font-size: clamp(#{$min}px, #{$max * calc(1 / 584) * 100}vw, #{$max}px);
 }
 
-// @mixin fluid-text($max: 24, $min: 16) {
-//     font-size: clamp(#{$min}px, #{$max / 584 * 100}vw, #{$max}px);
-// }
-
 @mixin colors($text, $bg, $border) {
     color: $text;
     background-color: $bg;
