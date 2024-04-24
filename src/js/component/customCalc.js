@@ -50,12 +50,12 @@ export default function customCalcl() {
             $squares.each(function () {
                 $(this).val()
                     ? (squarePrice = basePrice * parseInt($(this).val()))
-                    : (squarePrice = basePricePvhWhite * 1);
+                    : (squarePrice = basePricePvhWhite * 10);
             });
 
             var totalPrice = cornerTotal + squarePrice;
             var formatter = new Intl.NumberFormat("ru");
-            $resultPrint.html(formatter.format(totalPrice) + " руб.");
+            $resultPrint.html(formatter.format(totalPrice));
         }
     });
 }

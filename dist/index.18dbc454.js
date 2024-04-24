@@ -7299,6 +7299,8 @@ addEventListener("DOMContentLoaded", ()=>{
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>customInput);
+var _customCalc = require("./customCalc");
+var _customCalcDefault = parcelHelpers.interopDefault(_customCalc);
 function customInput() {
     function blockOptions(selectWithOptionsToBlock, dependentSelect) {
         function isDependentOptionSelected() {
@@ -7325,37 +7327,7 @@ function customInput() {
     blockOptions(select2, select1);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"43Ngm":[function(require,module,exports) {
+},{"./customCalc":"43Ngm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"43Ngm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>customCalcl);
@@ -7364,9 +7336,9 @@ var _jqueryDefault = parcelHelpers.interopDefault(_jquery);
 function customCalcl() {
     (0, _jqueryDefault.default)(document).ready(function() {
         // price
-        var basePricePvhWhite = 139;
-        var basePricePvhColored = 160;
-        var basePriceTextileWhite = 225;
+        var basePricePvhWhite = 1390;
+        var basePricePvhColored = 1600;
+        var basePriceTextileWhite = 2250;
         var cornerPrice = 100;
         var $form = (0, _jqueryDefault.default)("form");
         var $corners = $form.find('[data-name="corner"]');
@@ -7396,16 +7368,46 @@ function customCalcl() {
                 else if (arr.join() === "white,textile") basePrice = basePriceTextileWhite;
             });
             $squares.each(function() {
-                (0, _jqueryDefault.default)(this).val() ? squarePrice = basePrice * parseInt((0, _jqueryDefault.default)(this).val()) : squarePrice = basePricePvhWhite * 1;
+                (0, _jqueryDefault.default)(this).val() ? squarePrice = basePrice * parseInt((0, _jqueryDefault.default)(this).val()) : squarePrice = basePricePvhWhite * 10;
             });
             var totalPrice = cornerTotal + squarePrice;
             var formatter = new Intl.NumberFormat("ru");
-            $resultPrint.html(formatter.format(totalPrice) + " \u0440\u0443\u0431.");
+            $resultPrint.html(formatter.format(totalPrice));
         }
     });
 }
 
-},{"jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jYsSn":[function(require,module,exports) {
+},{"jquery":"hgMhh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"jYsSn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>increment);
@@ -7413,18 +7415,24 @@ var _customCalc = require("./customCalc");
 var _customCalcDefault = parcelHelpers.interopDefault(_customCalc);
 function increment() {
     const inputElement = document.querySelector("[data-plus]").closest(".custom-input").querySelector("input");
-    document.querySelector("form").addEventListener("click", (e)=>{
-        if (e.target.closest("[data-plus]")) {
-            inputElement.dispatchEvent(new Event("input"));
-            e.target.closest(".custom-input").querySelector("input").stepUp();
-        }
-        if (e.target.closest("[data-minus]")) {
-            inputElement.dispatchEvent(new Event("input"));
-            e.target.closest(".custom-input").querySelector("input").stepDown();
-        }
+    const buttons = document.querySelectorAll("[data-plus], [data-minus]");
+    buttons.forEach((button)=>{
+        button.addEventListener("click", (e)=>{
+            e.preventDefault(); // Добавлено предотвращение стандартного поведения формы
+            console.log(e.target.closest(".custom-input"), e.currentTarget.closest(".custom-input"));
+            if (e.currentTarget.matches("[data-plus]")) {
+                // Используем matches вместо closest для проверки тега
+                inputElement.dispatchEvent(new Event("input"));
+                e.target.closest(".custom-input").querySelector("input").stepUp(1);
+                console.log(inputElement.value);
+            }
+            if (e.currentTarget.matches("[data-minus]")) {
+                inputElement.dispatchEvent(new Event("input"));
+                e.target.closest(".custom-input").querySelector("input").stepDown(1);
+                console.log(inputElement.value);
+            }
+        });
     });
-// inp.dispatchEvent(new Event("input"));
-// inp.dispatchEvent(new Event("change"));
 }
 
 },{"./customCalc":"43Ngm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iqNlW","1SICI"], "1SICI", "parcelRequirea799")

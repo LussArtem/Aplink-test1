@@ -1,22 +1,37 @@
 import customCalc from "./customCalc";
+
 export default function increment() {
     const inputElement = document
         .querySelector("[data-plus]")
         .closest(".custom-input")
         .querySelector("input");
 
-    document.querySelector("form").addEventListener("click", (e) => {
-        if (e.target.closest("[data-plus]")) {
-            inputElement.dispatchEvent(new Event("input"));
-            e.target.closest(".custom-input").querySelector("input").stepUp();
-        }
-        if (e.target.closest("[data-minus]")) {
-            inputElement.dispatchEvent(new Event("input"));
-            e.target.closest(".custom-input").querySelector("input").stepDown();
-        }
+    const buttons = document.querySelectorAll("[data-plus], [data-minus]");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault(); // Добавлено предотвращение стандартного поведения формы
+            console.log(
+                e.target.closest(".custom-input"),
+                e.currentTarget.closest(".custom-input")
+            );
+            if (e.currentTarget.matches("[data-plus]")) {
+                // Используем matches вместо closest для проверки тега
+                inputElement.dispatchEvent(new Event("input"));
+                e.target
+                    .closest(".custom-input")
+                    .querySelector("input")
+                    .stepUp(1);
+                console.log(inputElement.value);
+            }
+            if (e.currentTarget.matches("[data-minus]")) {
+                inputElement.dispatchEvent(new Event("input"));
+                e.target
+                    .closest(".custom-input")
+                    .querySelector("input")
+                    .stepDown(1);
+                console.log(inputElement.value);
+            }
+        });
     });
-
-    // inp.dispatchEvent(new Event("input"));
-
-    // inp.dispatchEvent(new Event("change"));
 }

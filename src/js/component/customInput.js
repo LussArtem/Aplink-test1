@@ -1,3 +1,4 @@
+import customCalcl from "./customCalc";
 export default function customInput() {
     function blockOptions(selectWithOptionsToBlock, dependentSelect) {
         function isDependentOptionSelected() {
